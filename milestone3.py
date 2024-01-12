@@ -3,8 +3,8 @@ import itertools
 from itertools import product
 
 from matplotlib import pyplot as plt 
-f = open("Workshop2024\Milestone2\Input\Testcase3.txt", "r")
-fout = open("m2t3.txt", "w")
+f = open("Workshop2024\Milestone3\Input\Testcase1.txt", "r")
+fout = open("m3t1.txt", "w")
 data = f.read()
 data=data.split()
 diameter = int(data[0][14:])
@@ -15,7 +15,12 @@ dieShift=[int(x) for x in data[2][16:-1].split(',')]
 print(dieShift)
 reference=[int(x) for x in data[3][14:-1].split(",")]
 print(reference)
-
+dieStreet= [int(x) for x in data[4][25:-1].split(",")]
+print(dieStreet)
+reticleStreet=[int(x) for x in data[5][30:-1].split(",")]
+print(reticleStreet)
+dpr=[int(x) for x in data[6][15:].split('x')]
+print(dpr)
 rad= diameter/2
 x_l=-dieShift[0]-diameter/2
 y_b=-dieShift[1]-diameter/2
@@ -25,12 +30,18 @@ print(x_l)
 print(y_b)
 xArr=[]
 yArr=[]
+xCount=0
+yCount=0
+
 while(x_l<diameter):
+    xCount+=1
+    if(xCount>dpr[0]):
+        
     xArr.append(x_l)
-    x_l=x_l+die_size[0]
+    x_l=x_l+die_size[0]+dieStreet[0]
 while(y_b<diameter):
     yArr.append(y_b)
-    y_b=y_b+die_size[1]
+    y_b=y_b+die_size[1]+dieStreet[1]
 
 lld=[]
 for x in xArr:
